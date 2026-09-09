@@ -1,0 +1,57 @@
+---
+type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type Size = 'sm' | 'md' | 'lg';
+interface Props {
+  href?: string;
+  variant?: Variant;
+  size?: Size;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  loading?: boolean;
+  class?: string;
+  id?: string;
+}
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  loading = false,
+  class: className = '',
+  id,
+} = Astro.props;
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, loading ? 'is-loading' : '', className]
+  .filter(Boolean)
+  .join(' ');
+---
+{href ? (
+  <a href={href} class={classes} id={id} aria-disabled={disabled || loading ? 'true' : undefined}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} type={type} id={id} disabled={disabled || loading} aria-busy={loading}>
+    <slot />
+  </button>
+)}
+<style>
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    border-radius: 999px; border: 1px solid transparent; font-weight: 700;
+    text-decoration: none; cursor: pointer; transition: 0.18s ease; font-family: inherit;
+  }
+  .btn--sm { padding: 0.45rem 0.9rem; font-size: 0.875rem; }
+  .btn--md { padding: 0.7rem 1.2rem; font-size: 0.95rem; }
+  .btn--lg { padding: 0.9rem 1.45rem; font-size: 1rem; }
+  .btn--primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #111827; box-shadow: 0 10px 30px rgba(232, 197, 71, 0.28);
+  }
+  .btn--primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  .btn--secondary { background: transparent; border-color: rgba(15, 23, 42, 0.18); color: var(--text); }
+  :global(.section-dark) .btn--secondary { border-color: rgba(226, 232, 240, 0.28); color: var(--text-on-dark); }
+  .btn--ghost { background: transparent; color: var(--text-muted); }
+  .btn--danger { background: #dc2626; color: white; }
+  .btn:disabled, .btn[aria-disabled='true'] { opacity: 0.55; pointer-events: none; }
+  .is-loading { opacity: 0.7; }
+</style>

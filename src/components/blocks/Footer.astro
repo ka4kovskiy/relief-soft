@@ -1,0 +1,53 @@
+---
+import { site } from '../../data/site';
+import Logo from './Logo.astro';
+---
+<footer class="footer section-dark">
+  <div class="container footer__grid">
+    <div>
+      <Logo />
+      <p class="muted" style="margin-top:0.9rem; max-width: 34ch;">{site.tagline}</p>
+    </div>
+    <div>
+      <strong>Разделы</strong>
+      <ul>
+        <li><a href="/#catalog">Каталог</a></li>
+        <li><a href="/how-to-buy">Как купить</a></li>
+        <li><a href="/about">О нас</a></li>
+      </ul>
+    </div>
+    <div>
+      <strong>Документы</strong>
+      <ul>
+        <li><a href="/offer">Оферта</a></li>
+        <li><a href="/privacy">Политика ПДн</a></li>
+      </ul>
+    </div>
+    <div>
+      <strong>Связь</strong>
+      <ul>
+        <li><a href={site.telegram}>Telegram</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+      <p class="tiny muted">Телефон по запросу — основной канал текст.</p>
+    </div>
+  </div>
+  <div class="container tiny muted" style="padding-bottom:2rem;">
+    {site.name}: авторские решения. «1С» — товарный знак правообладателя; мы не официальный партнёр и не ЦСО.
+  </div>
+</footer>
+<style>
+  .footer { padding-top: 3rem; }
+  .footer__grid {
+    display: grid; gap: 1.5rem;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    padding-bottom: 2rem;
+  }
+  .footer ul { list-style: none; padding: 0; margin: 0.6rem 0 0; }
+  .footer li { margin: 0.35rem 0; }
+  .footer a { text-decoration: none; color: rgba(226,232,240,0.82); }
+  .tiny { font-size: 0.82rem; }
+  @media (max-width: 900px) {
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

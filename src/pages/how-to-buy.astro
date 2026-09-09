@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+const steps = [
+  'Открываете карточку товара (лучше с рекламы сразу на неё).',
+  'Жмёте «Купить» — оплата через ЮKassa (подключим).',
+  'Получаете доступ письмом или в Telegram-боте.',
+  'Вопросы — только текстом, без обязательных созвонов.',
+];
+---
+<BaseLayout title="Как купить">
+  <section class="section">
+    <div class="container" style="max-width:720px;">
+      <h1>Как купить</h1>
+      <ol>
+        {steps.map((s) => <li style="margin:0.55rem 0;">{s}</li>)}
+      </ol>
+      <p class="muted">Нужна легальная 1С у вас. Мы не передаём платформу и конфигурации.</p>
+      <Button href="/#catalog">К каталогу</Button>
+    </div>
+  </section>
+</BaseLayout>

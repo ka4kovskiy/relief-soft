@@ -1,0 +1,13 @@
+---
+interface Props { class?: string; href?: string; }
+const { class: className = '', href } = Astro.props;
+---
+{href ? <a class={`card ${className}`} href={href}><slot /></a> : <div class={`card ${className}`}><slot /></div>}
+<style>
+  .card {
+    display: block; background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.35rem;
+    text-decoration: none; color: inherit; transition: 0.18s ease;
+  }
+  a.card:hover { transform: translateY(-3px); border-color: rgba(232, 197, 71, 0.55); }
+</style>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/blocks/Hero.astro';
+import ProductGrid from '../components/blocks/ProductGrid.astro';
+import Trust from '../components/blocks/Trust.astro';
+import Disclaimer from '../components/blocks/Disclaimer.astro';
+---
+<BaseLayout>
+  <Hero />
+  <ProductGrid />
+  <Trust />
+  <section class="section" style="padding-top:0;">
+    <div class="container"><Disclaimer /></div>
+  </section>
+</BaseLayout>

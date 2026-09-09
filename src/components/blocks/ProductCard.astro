@@ -1,0 +1,24 @@
+---
+import type { Product } from '../../data/products';
+import { formatPrice } from '../../data/products';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+interface Props { product: Product; }
+const { product } = Astro.props;
+---
+<Card class="product-card">
+  {product.featured && <Badge>Для рекламы</Badge>}
+  <h3>{product.title}</h3>
+  <p class="muted">{product.subtitle}</p>
+  <p class="price">{formatPrice(product.price)}</p>
+  <ul>
+    {product.pains.slice(0, 2).map((p) => <li>{p}</li>)}
+  </ul>
+  <Button href={`/product/${product.slug}`} variant="secondary">Подробнее</Button>
+</Card>
+<style>
+  .product-card h3 { margin-top: 0.7rem; font-size: 1.15rem; }
+  .price { font-size: 1.35rem; font-weight: 800; margin: 0.8rem 0; }
+  ul { margin: 0 0 1.1rem; color: var(--text-muted); }
+</style>

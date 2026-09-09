@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Disclaimer from '../../components/blocks/Disclaimer.astro';
+import { products, getProduct, formatPrice } from '../../data/products';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProduct(slug!);
+if (!product) {
+  throw new Error(`Product not found: ${slug}`);
+}
+---
+<BaseLayout title={product.title} description={product.pains[0]}>
+  <section class="section">
+    <div class="container product">
+      <div>
+        <Badge tone="muted">{product.subtitle}</Badge>
+        <h1>{product.title}</h1>
+        <p class="price">{formatPrice(product.price)}</p>
+        <div class="actions">
+          <Button id="buy-btn" size="lg">Купить</Button>
+          <Button href={site.telegram} variant="secondary" size="lg">Написать в Telegram</Button>
+        </div>
+        <p class="muted tiny">Оплата ЮKassa — скоро. Пока кнопка-заглушка.</p>
+
+        <h2>Знакомо?</h2>
+        <ul>{product.pains.map((p) => <li>{p}</li>)}</ul>
+
+        <h2>Что внутри</h2>
+        <ul>{product.includes.map((p) => <li>{p}</li>)}</ul>
+
+        <div class="split">
+          <div>
+            <h3>Для кого</h3>
+            <ul>{product.forWhom.map((p) => <li>{p}</li>)}</ul>
+          </div>
+          <div>
+            <h3>Не для кого</h3>
+            <ul>{product.notForWhom.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        </div>
+
+        <h2>FAQ</h2>
+        <div class="faq">
+          {product.faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p class="muted">{f.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="shot muted">Место под скриншоты / демо-ролик</div>
+        <Disclaimer />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('buy-btn');
+  btn?.addEventListener('click', () => {
+    alert('Скоро подключим ЮKassa. Пока это демо-кнопка.');
+  });
+</script>
+
+<style>
+  .product { max-width: 760px; }
+  .price { font-size: 2rem; font-weight: 800; margin: 0.8rem 0 1rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .tiny { font-size: 0.88rem; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .faq details {
+    border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem 1rem;
+    background: white; margin-bottom: 0.6rem;
+  }
+  .shot {
+    margin: 1.5rem 0; border: 1px dashed rgba(15,23,42,0.2); border-radius: 16px;
+    min-height: 180px; display: grid; place-items: center; background: #fff;
+  }
+  @media (max-width: 700px) { .split { grid-template-columns: 1fr; } }
+</style>

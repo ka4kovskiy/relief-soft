@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Политика персональных данных">
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <h1>Политика персональных данных</h1>
+      <p class="muted">Черновик. Перед запуском проверьте юристом.</p>
+      <p>
+        {site.name} обрабатывает данные, необходимые для продажи и выдачи цифрового продукта
+        (email, телефон при указании, данные оплаты через платёжного провайдера).
+      </p>
+      <p>Цели: исполнение договора, связь по поддержке, законные требования.</p>
+      <p>Контакт: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
+</BaseLayout>

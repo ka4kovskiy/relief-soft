@@ -1,0 +1,17 @@
+---
+import { site } from '../../data/site';
+---
+<a class="logo" href="/" aria-label={site.name}>
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <rect width="32" height="32" rx="10" fill="#0B1220"/>
+    <path d="M8 20c4-1 7-5 8-10 1 5 4 9 8 10" stroke="#E8C547" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="16" cy="10" r="2" fill="#F5D76E"/>
+  </svg>
+  <span>{site.name}</span>
+</a>
+<style>
+  .logo {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    font-weight: 800; text-decoration: none; letter-spacing: -0.02em;
+  }
+</style>

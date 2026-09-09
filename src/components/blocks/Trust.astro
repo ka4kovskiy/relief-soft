@@ -1,0 +1,31 @@
+---
+const items = [
+  { t: 'Авторский продукт', d: 'Не ЦСО и не «официальный 1С» — честно в дисклеймере.' },
+  { t: 'Без созвонов', d: 'Купил → получил доступ. Поддержка текстом.' },
+  { t: 'Автовыдача', d: 'После оплаты — письмо или бот (подключим ЮKassa).' },
+  { t: 'Ваша легальная 1С', d: 'Платформа и конфигурация — на стороне покупателя.' },
+];
+---
+<section class="section">
+  <div class="container">
+    <h2>Почему так удобно</h2>
+    <div class="grid-3" style="margin-top:1.25rem; grid-template-columns: repeat(4, 1fr);">
+      {items.map((i) => (
+        <div class="trust">
+          <h3>{i.t}</h3>
+          <p class="muted">{i.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .trust {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.2rem; box-shadow: var(--shadow);
+  }
+  .trust h3 { font-size: 1.02rem; }
+  @media (max-width: 900px) {
+    .grid-3 { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>

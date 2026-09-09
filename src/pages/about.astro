@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="О нас">
+  <section class="section">
+    <div class="container" style="max-width:720px;">
+      <h1>О {site.name}</h1>
+      <p>
+        Мы делаем узкие цифровые продукты вокруг реальных болей в типовых базах:
+        закрытие периода, НДС, обновления с доработками.
+      </p>
+      <p class="muted">
+        Формат — асинхронный: витрина, оплата, автовыдача, поддержка текстом.
+        Бренд без «1С» в названии; совместимость указываем в карточках.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

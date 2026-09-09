@@ -1,0 +1,13 @@
+---
+import { products } from '../../data/products';
+import ProductCard from './ProductCard.astro';
+---
+<section class="section" id="catalog">
+  <div class="container">
+    <h2>Каталог</h2>
+    <p class="muted">Три стартовые карточки — дальше расширим по списку болей.</p>
+    <div class="grid-3" style="margin-top: 1.5rem;">
+      {products.map((p) => <ProductCard product={p} />)}
+    </div>
+  </div>
+</section>
